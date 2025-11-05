@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张艳博 - 个人简历</title>
+    <style>
+        :root {
+            --primary-color: #0a1a6c;
+            --secondary-color: #5a5cff;
+            --neutral-color: #5f6368;
+            --background-color: #f8f9fa;
+            --card-color: #ffffff;
+            --text-color: #3a3a4d;
+            --light-text: #6b6b8a;
+            --border-radius: 14px;
+            --box-shadow: 0 8px 32px 0 rgba(40,60,180,0.13), 0 1.5px 8px 0 rgba(90,92,255,0.10);
+            --transition: all 0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(120deg, #e6e9f0 0%, #eef1f8 100%);
+            padding: 20px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(255,255,255,0.55);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px 0 rgba(40,60,180,0.13), 0 1.5px 8px 0 rgba(90,92,255,0.10);
+            backdrop-filter: blur(22px) saturate(180%);
+            -webkit-backdrop-filter: blur(22px) saturate(180%);
+            border: 1.5px solid rgba(90,92,255,0.13);
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(13, 9, 158, 0.08) 0%, rgba(54, 35, 255, 0.08) 100%);
+            border-radius: 50%;
+            transform: translate(100px, -150px);
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px #5a5cff11;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info strong {
+            margin-right: 5px;
+            color: var(--primary-color);
+        }
+
+        .keywords {
+            background-color: rgba(13, 9, 158, 0.05);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        .keywords p {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .keywords strong {
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: rgba(255,255,255,0.42);
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px 0 rgba(40,60,180,0.13), 0 1.5px 8px 0 rgba(90,92,255,0.10);
+            backdrop-filter: blur(22px) saturate(180%);
+            -webkit-backdrop-filter: blur(22px) saturate(180%);
+            border: 1.5px solid rgba(90,92,255,0.13);
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .section:hover {
+            box-shadow: 0 20px 56px 0 rgba(90,92,255,0.22), 0 6px 24px 0 rgba(40,60,180,0.16), 0 0 32px 6px #5a5cff33;
+            transform: translateY(-10px) scale(1.04);
+            z-index: 3;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-shadow: 0 2px 8px #5a5cff11;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .education-item, .work-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .education-item h4, .work-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .education-item p, .work-item p {
+            margin-bottom: 10px;
+            color: var(--light-text);
+        }
+
+        .work-item .company {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .work-item .position {
+            font-style: italic;
+        }
+
+        .responsibilities {
+            margin-top: 15px;
+        }
+
+        .responsibilities h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .responsibilities ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .responsibilities li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .responsibilities li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.7em;
+            width: 10px;
+            height: 10px;
+            background: #27ae60;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .project-list {
+            margin-top: 15px;
+        }
+
+        .project-item {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .project-item h5 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .project-item p {
+            margin-bottom: 5px;
+        }
+
+        .awards {
+            margin-top: 15px;
+        }
+
+        .awards h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .awards ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .awards li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .awards li::before {
+            content: "🏆";
+            position: absolute;
+            left: 0;
+        }
+
+        .self-evaluation {
+            margin-top: 15px;
+        }
+
+        .self-evaluation h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .self-evaluation p {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            color: var(--light-text);
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .image-container img {
+            max-width: 60%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .avatar {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 6px 24px 0 rgba(90,92,255,0.13), 0 1.5px 8px 0 rgba(40,60,180,0.10);
+            background: rgba(255,255,255,0.32);
+            backdrop-filter: blur(10px) saturate(160%);
+            -webkit-backdrop-filter: blur(10px) saturate(160%);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .work-card {
+            background: rgba(255,255,255,0.38);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px 0 rgba(90,92,255,0.10), 0 1.5px 8px 0 rgba(40,60,180,0.08);
+            padding: 32px 28px 24px 28px;
+            margin-bottom: 32px;
+            position: relative;
+            transition: box-shadow 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+            border: 1.5px solid rgba(90,92,255,0.10);
+        }
+
+        .work-card:hover {
+            box-shadow: 0 12px 48px 0 rgba(90,92,255,0.18), 0 4px 16px 0 rgba(40,60,180,0.13), 0 0 24px 4px #5a5cff22;
+            transform: translateY(-8px) scale(1.025);
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .image-container img {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>张艳博 <span style="font-size:1.5rem;color:#222222;">男 1990.04</span></h1>
+                <div class="contact-info">
+                    <p><strong>Tel:</strong> 18610810950</p>
+                    <p><strong>Email:</strong> 18610810950@163.com</p>
+                </div>
+                <div class="keywords">
+                    <p><strong>意向地点：</strong> 深圳</p>
+                    <p><strong>意向领域：</strong> AI、AI for Science、LLM、工业数字化</p>
+                    <p><strong>职位：</strong> 产品经理</p>
+                    <p><strong>个人关键词：</strong> 人工智能（AI平台, LLM-Agents, AI for Science），工业数智化（Digital-Twin/Thread））</p>
+                </div>
+            </div>
+            <div class="avatar">
+                <img src="profile.png" alt="个人头像">
+            </div>
+        </header>
+
+
+        <section class="section">
+            <h2>教育背景</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start;">
+                <div class="education-item" style="flex:1 1 320px;min-width:220px;">
+                    <h4>2011.09 ~ 2014.03</h4>
+                    <p>北京航空航天大学</p>
+                    <p>飞行器设计 / 研究生（硕士）</p>
+                </div>
+                <div class="education-item" style="flex:1 1 320px;min-width:220px;">
+                    <h4>2007.09 ~ 2011.06</h4>
+                    <p>北京航空航天大学</p>
+                    <p>工程力学 / 本科（学士）</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>工作经历</h2>
+            <div class="work-card">
+                <div class="work-item">
+                    <h4>2024.08-至今 &nbsp;&nbsp;<span style="color:#0d009e;;font-weight:bold;">比亚迪</span></h4>
+                    <p class="position">数字化软件中心　科长/主任工程师（专家）</p>
+                    <div class="responsibilities">
+                        <h4>职责描述：</h4>
+                        <p>负责比亚迪汽车工程研究院数智化平台建设(数字化转型以及AI赋能工业软件、仿真应用)，规划并完成AI4S平台、AI造型及验证平台、AI系统设计智能体及MBDE汽车模型数字平台。同时负责工程院信息化平台的统筹规划与建设（29团队）。</p>
+                        <h4>产品建设：</h4>
+                        <ul>
+                            <li>融合数据/机理驱动模式，建设<strong>院内首个AI4S平台</strong>，应用于汽车空调、底盘、三电等业务的数据分析、代理模型及系统集成场景；</li>
+                            <li>构建工程院<strong>造型及验证一体化AI平台迪Sign</strong>（含文生图/视频/CAD数模，且融合CAD-CAE/CFD workflow自动生成及仿真调度）；</li>
+                            <li>构建整车性能开发的agent架构，实现sysml/modelica以及python等<strong>代码生成以及仿真闭环</strong>的智能体；</li>
+                            <li>拉通15+业务方，梳理数智化转型需求，完成<strong>公司级首个汽车模型数字工程平台</strong>（MBDE，数字主线、元模型/数据管理，AI建模助手等核心技术），发布5+场景APP;</li>
+                        </ul>
+                        <h4>项目支持：</h4>
+                        <p><strong>广东省铸魂工程</strong>连点成线业务方副组长，负责三个试点场景的技术架构规划，推动华为、大湾区国家创新中心、中汽中心等完成攻关汽车造型优化、AI for Engineering等典型业务需求；</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-item">
+                    <h4>2022.02-2024.07 &nbsp;&nbsp;<span style="color:#0d009e;font-weight:bold;">百度</span></h4>
+                    <p class="position">深度学习技术平台部（DLTP）　高级技术产品经理（TPM）</p>
+                    <div class="responsibilities">
+                        <h4>职责描述：</h4>
+                        <p>作为飞桨AI for Science产品负责人，领导团队完成了PaddleScience V1.0的开发并在2023年4月的WAVE SUMMIT上发布。同时负责PaddleX产品的迭代更新，适配多种异构芯片，并推动其商业化应用。参与多个AI4S项目的售前方案设计和技术支持工作。</p>
+                        <h4>项目经历&业绩：</h4>
+                        <h4>产品建设：</h4>
+                        <ul>
+                            <li>规划并建设 <a href="https://paddlescience-docs.readthedocs.io/zh-cn/latest/" target="_blank" style="color:#0d009e;font-weight:bold;text-decoration:underline;">PaddleScience V1.0</a>， 并于 2023 年飞桨 WAVE SUMMIT 发布，同年被<a href="https://tech.chinadaily.com.cn/a/202307/13/WS64afd179a3109d7585e44d0b.html" target="_blank" style="color:#0d009e;font-weight:bold;text-decoration:underline;">科技部创新地图录入</a>，并于信通院 AI4S 产业图谱中发布。</li>
+                            <li>完成飞桨零代码工具<a href="https://aistudio.baidu.com/intro/paddlex" target="_blank" style="color:#0d009e;font-weight:bold;text-decoration:underline;">PaddleX</a> 产品功能升级，发布如目标检测（PP-YOLO, RT-DETR等）、OCR（通用OCR, 大模型半监督）、大小模型融合的文档信息抽取（PP-ChatOCR）等核心模型产线，同时作为项目负责人，推动PaddleX中25+模型完成昇腾920、寒武纪MLU以及昆仑芯片的适配；</li>
+                        </ul>
+                        <h4>应用建设：</h4>
+                        <ul>
+                            <li>构建 AIStudio <a href="https://aistudio.baidu.com/projectoverview/public?topic=15" target="_blank" style="color:#0d009e;font-weight:bold;text-decoration:underline;">精品项目</a> 40+ ，拓展 TOP50 高校合作 30+，科研生态用户 UID 5000+</li>
+                        </ul>
+                        <h4>生态建设：</h4>
+                        <ul>
+                            <li>中科曙光"先导杯"、"大湾区 AI4S 竞赛"、"IJCAI-汽车风阻预测"等 AI4S 赛事评委&讲师，进行 AI for Science 行业专家讲座 20 余次，组织<a href="https://aistudio.baidu.com/projectoverview/public?topic=15" target="_blank" style="color:#0d009e;font-weight:bold;text-decoration:underline;">飞桨智能流体公开课</a>，编写 AI for Science 领域 PR 10+；PaddleX侧完成产品推广材料、商业报价体系等商业生态；</li>
+                        </ul>
+                        <h4>技术积累：</h4>
+                        <ul>
+                            <li>第一作者专利 5 篇，已实审；参与 4 篇论文编写（已接收）</li>
+                        </ul>
+                        <h4>AI4S项目合作：</h4>
+                        <div class="project-list">
+                            <div class="project-item">
+                                <h5><span style="display:inline-block;width:10px;height:10px;background:#27ae60;border-radius:50%;vertical-align:middle;margin-right:6px;"></span> 科技部 2030"新一代人工智能"重大项目—人工智能科学计算共性平台</h5>
+                                <p>子课题负责人，负责项目指南与立项材料编写，项目（约 500 万）覆盖异构芯片适配/科学计算范式/多尺度科学计算/框架算子体系/科学领域应用与评测等多维度。</p>
+                            </div>
+                            <div class="project-item">
+                                <h5><span style="display:inline-block;width:10px;height:10px;background:#27ae60;border-radius:50%;vertical-align:middle;margin-right:6px;"></span> LLM-Chem AI 化学家</h5>
+                                <p>上海交通大学 AI for Science 项目（业内首个 AI4S 平台项目）中科学计算专项负责人。完成售前方案及投标材料编写以及BAI-Chem 产品设计，并于 2023 世界人工智能大会推出"白玉兰科学大模型"（BAI-Chem 化学合成专家、BAI-NeuroFuild 流体世界模型及 BAI-Eval 评测模型）。</p>
+                            </div>
+                            <div class="project-item">
+                                <h5><span style="display:inline-block;width:10px;height:10px;background:#27ae60;border-radius:50%;vertical-align:middle;margin-right:6px;"></span> AI 汽车流场高精度预测</h5>
+                                <p>联合 NVIDIA、浙大建设业内首个可对任意汽车外形进行风阻预测的"3D 高精度汽车风阻预测 AI 模型 DNNFluid-Car "，并联合 HPC 与工业团队形成汽车风阻云服务解决方案，已应用于理想、中车等单位</p>
+                            </div>
+                            <div class="project-item">
+                                <h5><span style="display:inline-block;width:10px;height:10px;background:#27ae60;border-radius:50%;vertical-align:middle;margin-right:6px;"></span> PaddleX国产适配</h5>
+                                <p>支撑QIYUAN实验室国产化AI平台的建设，包含PaddleX的产品交付，推动昇腾/寒武纪/昆仑三类芯片的模型适配（paddle框架）等工作，完成20*3套模型同精度（对标A100）模型交付</p>
+                            </div>
+                        </div>
+                        <div class="awards">
+                            <h4>个人荣誉：</h4>
+                            <ul>
+                                <li>2022 Q3 获得"闪耀新锐"， "专利奖"</li>
+                                <li>2023 获 TPG "百度小赞"，"季度之星"， "生态影响力奖"， "重大项目攻坚奖"， "产品创新奖"等</li>
+                                <li>2024 年荣获 "2023 百度骄傲特别奖（团队）"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div class="work-item">
+                    <h4>2014.04-2022.01 &nbsp;&nbsp;<span style="color:#0d009e;;font-weight:bold;">北京经纬恒润科技有限公司</span></h4>
+                    <p class="position">协同研发部/机电系统部　研发经理</p>
+                    <div class="responsibilities">
+                        <h4>工作描述：</h4>
+                        <p>面向军工（航空/航天等）、汽车等企业，提供系统工程(MBSE)、AI-ROM、功能安全等方面的技术售前、解决方案及模型开发，软件设计等全流程服务；负责部门的技术规划及人员培养等。</p>
+                        <h4>项目售前：</h4>
+                        <ul>
+                            <li>负责客户需求挖掘，联合销售实现客户需求引导和迭代，转化并实施 20+ 项目</li>
+                        </ul>
+                        <h4>方案设计：</h4>
+                        <ul>
+                            <li>负责制定技术解决方案及支撑材料，如课题指南、技术方案等，覆盖MBSE/AI-ROM/AI-Surrogate、功能安全及数字孪生等多领域</li>
+                        </ul>
+                        <h4>技术实现：</h4>
+                        <ul>
+                            <li>负责系统工程、AI降阶/代理、功能安全及数字孪生等项目实施，作为主要负责人参与了 20 多个项目实施，培养新人 10+</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section">
+            <h2>自我评价</h2>
+            <div class="self-evaluation">
+                <p>技术基础：具备AI产品建设、项目实施经验，国内第一批进入 AI for Science 赛道并将飞桨 AI for Science 带上正轨</p>
+                <p>解决方案与实施：能有效挖掘客户需求并制定解决方案，有丰富的项目售前-实施-售后全流程经验</p>
+                <p>综合素养：强自驱与快速学习能力，擅长需求分析和技术梳理、尤其擅长任务分解、实施及多方协作</p>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
